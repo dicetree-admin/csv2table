@@ -182,12 +182,16 @@ def printResult(file_path):
 
 if __name__=="__main__":
 
-    file_path = '100 Sales Records.csv'
-    # file_path = '1500000 Sales Records.csv'
-    # testRowNum = 4
+    try:
+        file_path = sys.argv[1]
+        # file_path = '100 Sales Records.csv'
+        # file_path = '1500000 Sales Records.csv'
+        # testRowNum = 4
 
-    rownum = 1
-    start_time = time.time()
-    total = 0
+        rownum = 1
+        start_time = time.time()
+        total = 0
 
-    printResult(file_path)
+        printResult(file_path)
+    except:
+        print('''Missing CSV file Name. Please retry like "python3.6 CSV2TableCreator.py 'Sales Records.csv'" ''')

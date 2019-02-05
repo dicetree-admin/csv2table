@@ -185,8 +185,9 @@ def printResult(file_path, start_time):
 
 if __name__=="__main__":
 
+    file_path = sys.argv[1]
     # file_path = '100 Sales Records.csv'
-    file_path = '1500000 Sales Records.csv'
+    # file_path = '1500000 Sales Records.csv'
     start_time = time.time()
     # testRowNum = 4
     pool = multiprocessing.Pool(processes=2)
