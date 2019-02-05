@@ -7,6 +7,9 @@ import time
 import os
 import sys
 
+import multiprocessing
+
+
 
 def regDataType(str):
     str=str.strip()
@@ -61,7 +64,7 @@ def regDataType(str):
 
 # csv 데이터 check 및 타입확인
 def DataTypeFunc(file_path, testRowNum=99999999999):
-    global rownum
+    rownum = 1
 
     headerList = []
     valueList = []
@@ -151,7 +154,7 @@ def progress(count, total, start_time, status=''):
 
 
 
-def printResult(file_path):
+def printResult(file_path, start_time):
     # DataTypeList = DataTypeFunc(file_path, testRowNum)
     DataTypeList, rowCount = DataTypeFunc(file_path)
 
@@ -182,12 +185,19 @@ def printResult(file_path):
 
 if __name__=="__main__":
 
-    file_path = '100 Sales Records.csv'
-    # file_path = '1500000 Sales Records.csv'
-    # testRowNum = 4
-
-    rownum = 1
+    # file_path = '100 Sales Records.csv'
+    file_path = '1500000 Sales Records.csv'
     start_time = time.time()
-    total = 0
+    # testRowNum = 4
+    pool = multiprocessing.Pool(processes=2)
+    pool.map(printResult(file_path, start_time))
+    pool.close()
+    pool.join()
 
-    printResult(file_path)
+
+
+""" 
+File size : 178.5 MB 
+row(s) : 1500001 
+Elapsed Time : 9.219732 sec
+"""
